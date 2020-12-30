@@ -7,6 +7,11 @@ public class SimHandMovement : MonoBehaviour
     public float m_moveSpeed = 1.5f;
     public float m_turnSpeed = 15f;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     // Update is called once per frame
     void Update()
     {
