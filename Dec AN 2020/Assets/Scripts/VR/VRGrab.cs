@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimGrab : MonoBehaviour
+public class VRGrab : MonoBehaviour
 {
     public Animator m_anim;
 
-    private GameObject m_touchingObject;
-    private GameObject m_heldObject;
+    public string m_grip;
+    private bool m_gripHeld;
+
+    GameObject m_touchingObject;
+    GameObject m_heldObject;
 
     private void OnTriggerStay(Collider other)
     {
@@ -16,6 +19,7 @@ public class SimGrab : MonoBehaviour
             m_touchingObject = other.gameObject;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         m_touchingObject = null;
@@ -23,16 +27,18 @@ public class SimGrab : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if(Input.GetAxis(m_grip) > 0.8f && m_gripHeld == false)
         {
+            m_gripHeld = true;
             m_anim.SetBool("isGrabbing", true);
             if(m_touchingObject)
             {
                 Grab();
             }
         }
-        if(Input.GetKeyUp(KeyCode.Mouse1))
+        else if(Input.GetAxis(m_grip) < 0.8f && m_gripHeld == true)
         {
+            m_gripHeld = false;
             m_anim.SetBool("isGrabbing", false);
             if(m_heldObject)
             {
