@@ -347,7 +347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &395471984
 Transform:
   m_ObjectHideFlags: 0
@@ -710,8 +710,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594d6af06084b6a41b1b3df07ef02cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_throwForce: 250
   m_anim: {fileID: 396512260}
   m_grip: Left Grip
+  m_grabPositions: []
 --- !u!114 &396512262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,12 +832,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396512256}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29e0e9cd2624adc41925bcdf5d7f55ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_clickButton: X button
+  m_clickButton: X Button
 --- !u!1001 &455595915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -951,6 +953,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1692896319325948, guid: 493d1fcc509887f48aab121c22617139, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4035854674268834, guid: 493d1fcc509887f48aab121c22617139, type: 3}
       propertyPath: m_LocalPosition.x
       value: 355.18
@@ -1000,6 +1006,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 2f67735dd071ea243a40377f10cab41f, type: 2}
+    - target: {fileID: 111298875415825418, guid: 493d1fcc509887f48aab121c22617139,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 493d1fcc509887f48aab121c22617139, type: 3}
 --- !u!4 &589850329 stripped
@@ -1057,6 +1068,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_anim: {fileID: 589850334}
+  m_throwForce: 25
+  m_grabPosition: []
 --- !u!95 &589850334 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95231396979781064, guid: 493d1fcc509887f48aab121c22617139,
@@ -2473,7 +2486,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679172198}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a97f9fc65eff44409fb3f447ce9a9e2, type: 3}
@@ -2656,7 +2669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1894899960
 Transform:
   m_ObjectHideFlags: 0
@@ -2665,7 +2678,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894899959}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 355.15375, y: 61.646, z: 450.4098}
+  m_LocalPosition: {x: 355.15375, y: 62.397, z: 450.4098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 908848437}
@@ -3097,5 +3110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594d6af06084b6a41b1b3df07ef02cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_throwForce: 250
   m_anim: {fileID: 2107644419}
   m_grip: Right Grip
+  m_grabPositions: []
