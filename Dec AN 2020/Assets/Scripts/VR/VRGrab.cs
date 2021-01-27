@@ -10,6 +10,9 @@ public class VRGrab : MonoBehaviour
     public string m_grip;
     private bool m_gripHeld;
 
+    public string m_trigger;
+    private bool m_triggerHeld;
+
     GameObject m_touchingObject;
     GameObject m_heldObject;
 
@@ -48,17 +51,29 @@ public class VRGrab : MonoBehaviour
             }
         }
 
+        if (Input.GetAxis(m_trigger) > 0.5f && !m_triggerHeld)
+        {
+            m_triggerHeld = true;
+
+            if(m_heldObject)
+            {
+                m_heldObject.SendMessage("TriggerDown");
+            }
+        }
+        else if(Input.GetAxis(m_trigger) < 0.5f && m_triggerHeld)
+        {
+            m_triggerHeld = false;
+        }
+
+        //Throwing Calculator
         if(m_heldObject)
         {
-            Debug.Log("1");
             if(m_grabPositions.Count < 20)
             {
-                Debug.Log("2");
                 m_grabPositions.Add(this.transform.position);
             }
             else
             {
-                Debug.Log("3");
                 m_grabPositions.RemoveAt(0);
                 m_grabPositions.Add(this.transform.position);
             }
@@ -82,10 +97,11 @@ public class VRGrab : MonoBehaviour
     void AdvGrab()
     {
         m_heldObject = m_touchingObject;
-        m_heldObject.transform.SetParent(this.transform);
         FixedJoint fx = gameObject.AddComponent<FixedJoint>();
+        fx.connectedBody = m_heldObject.GetComponent<Rigidbody>();
         fx.breakForce = 10000;
         fx.breakTorque = 10000;
+        m_heldObject.transform.SetParent(this.transform);
     }
 
     void AdvRelease()
