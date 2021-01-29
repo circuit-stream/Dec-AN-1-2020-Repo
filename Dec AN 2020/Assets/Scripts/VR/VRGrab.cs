@@ -13,6 +13,8 @@ public class VRGrab : MonoBehaviour
     public string m_trigger;
     private bool m_triggerHeld;
 
+    public string m_menuButton;
+
     GameObject m_touchingObject;
     GameObject m_heldObject;
 
@@ -47,6 +49,7 @@ public class VRGrab : MonoBehaviour
             m_anim.SetBool("isGrabbing", false);
             if(m_heldObject)
             {
+                m_heldObject.SendMessage("Released");
                 AdvRelease();
             }
         }
@@ -62,11 +65,24 @@ public class VRGrab : MonoBehaviour
         }
         else if(Input.GetAxis(m_trigger) < 0.5f && m_triggerHeld)
         {
-            m_triggerHeld = false;
+            m_triggerHeld = false; 
+
+            if(m_heldObject)
+            {
+                m_heldObject.SendMessage("TriggerUp");
+            }
+        }
+
+        if(Input.GetButtonDown(m_menuButton))
+        {
+            if(m_heldObject)
+            {
+                m_heldObject.SendMessage("MenuButtonDown");
+            }
         }
 
         //Throwing Calculator
-        if(m_heldObject)
+        if (m_heldObject)
         {
             if(m_grabPositions.Count < 20)
             {

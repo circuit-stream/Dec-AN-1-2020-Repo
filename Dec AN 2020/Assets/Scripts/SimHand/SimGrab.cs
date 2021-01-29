@@ -39,6 +39,7 @@ public class SimGrab : MonoBehaviour
             m_anim.SetBool("isGrabbing", false);
             if(m_heldObject)
             {
+                m_heldObject.SendMessage("Released");
                 AdvRelease();
             }
         }
@@ -64,6 +65,20 @@ public class SimGrab : MonoBehaviour
                 m_heldObject.SendMessage("TriggerDown");
             }
         }
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            if (m_heldObject)
+            {
+                m_heldObject.SendMessage("TriggerUp");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse2))
+        {
+            if (m_heldObject)
+            {
+                m_heldObject.SendMessage("MenuButtonDown");
+            }
+        }
     }
 
     void Grab()
@@ -84,11 +99,11 @@ public class SimGrab : MonoBehaviour
     void AdvGrab()
     {
         m_heldObject = m_touchingObject;
-        m_heldObject.transform.SetParent(this.transform);
         FixedJoint fx = gameObject.AddComponent<FixedJoint>();
         fx.connectedBody = m_heldObject.GetComponent<Rigidbody>();
         fx.breakForce = 10000;
         fx.breakTorque = 10000;
+        m_heldObject.transform.SetParent(this.transform);
     }
 
     void AdvRelease()
