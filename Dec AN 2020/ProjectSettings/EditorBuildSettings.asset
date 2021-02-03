@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VuforiaAR.unity
     guid: 60ebe1be019882946a7298441f082415
+  - enabled: 1
+    path: Assets/Scenes/ARFoundation.unity
+    guid: 6772a793077ed4a40ac98ea65fa62018
   m_configObjects: {}
